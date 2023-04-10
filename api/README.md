@@ -115,7 +115,7 @@ GET /download/{filename} -> Se obtiene un archivo almacenado.
 
 ## Documentación de la API
 
-- [Visualización de la documentación con SwaggerUI](http://localhost:8080/swagger-ui-apikilo.html)
+- [Visualización de la documentación con SwaggerUI](http://localhost:8080/swagger-ui/index.html)
 
 ## Usuarios
 
