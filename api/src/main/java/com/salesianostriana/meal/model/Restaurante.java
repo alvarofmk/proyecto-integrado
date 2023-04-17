@@ -50,6 +50,9 @@ public class Restaurante {
     @ManyToOne
     private User restaurantAdmin;
 
+    @ManyToMany
+    private List<Cocina> cocina;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

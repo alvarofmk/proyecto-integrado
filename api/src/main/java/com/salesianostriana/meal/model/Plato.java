@@ -52,6 +52,9 @@ public class Plato {
     @ManyToOne
     private Restaurante restaurante;
 
+    @ManyToOne
+    private Categoria categoria;
+
     public void addRestaurante(Restaurante restaurante){
         this.restaurante = restaurante;
         restaurante.getPlatos().add(this);
