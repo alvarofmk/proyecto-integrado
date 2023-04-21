@@ -24,6 +24,7 @@ class LoginResponse {
   List<String>? roles;
   String? createdAt;
   String? token;
+  String? refreshToken;
 
   LoginResponse(
       {this.id,
@@ -31,7 +32,8 @@ class LoginResponse {
       this.nombre,
       this.roles,
       this.createdAt,
-      this.token});
+      this.token,
+      this.refreshToken});
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,6 +42,7 @@ class LoginResponse {
     roles = json['roles'].cast<String>();
     createdAt = json['createdAt'];
     token = json['token'];
+    refreshToken = json['refreshToken'];
   }
 
   Map<String, dynamic> toJson() {
@@ -50,6 +53,7 @@ class LoginResponse {
     data['roles'] = this.roles;
     data['createdAt'] = this.createdAt;
     data['token'] = this.token;
+    data['refreshToken'] = this.refreshToken;
     return data;
   }
 }
@@ -58,13 +62,15 @@ class User {
   final String name;
   final String email;
   final String accessToken;
+  final String refreshToken;
   final List<String> roles;
 
   User(
       {required this.name,
       required this.email,
       required this.accessToken,
-      required this.roles});
+      required this.roles,
+      required this.refreshToken});
 
   @override
   String toString() => 'User { name: $name, email: $email}';

@@ -2,6 +2,10 @@ package com.salesianostriana.meal.security.user.controller;
 
 import com.salesianostriana.meal.model.dto.plato.PlatoResponseDTO;
 import com.salesianostriana.meal.security.jwt.access.JwtProvider;
+import com.salesianostriana.meal.security.jwt.refresh.RefreshToken;
+import com.salesianostriana.meal.security.jwt.refresh.RefreshTokenException;
+import com.salesianostriana.meal.security.jwt.refresh.RefreshTokenRequest;
+import com.salesianostriana.meal.security.jwt.refresh.RefreshTokenService;
 import com.salesianostriana.meal.security.user.User;
 import com.salesianostriana.meal.security.user.dto.*;
 import com.salesianostriana.meal.security.user.service.UserService;
@@ -22,6 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -32,6 +37,8 @@ public class UserController {
     private final UserService userService;
     private final AuthenticationManager authManager;
     private final JwtProvider jwtProvider;
+
+    private final RefreshTokenService refreshTokenService;
 
 
     @Operation(summary = "Registra al usuario en la api como cliente")
@@ -92,6 +99,7 @@ public class UserController {
                     content = @Content(schema = @Schema(implementation = com.salesianostriana.meal.error.model.Error.class))),
     })
     @PostMapping("/auth/login")
+    @Transactional
     public ResponseEntity<JwtUserResponse> login(@RequestBody LoginRequest loginRequest) {
 
         Authentication authentication =
@@ -106,8 +114,11 @@ public class UserController {
         String token = jwtProvider.generateToken(authentication);
         User user = (User) authentication.getPrincipal();
 
+        refreshTokenService.deleteByUser(user);
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
+
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(JwtUserResponse.of(user, token));
+                .body(JwtUserResponse.of(user, token, refreshToken.getToken()));
 
     }
 
@@ -169,5 +180,26 @@ public class UserController {
         return UserResponse.fromUser(loggedUser);
     }
 
+    @PostMapping("/refreshtoken")
+    @Transactional
+    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+        String refreshToken = refreshTokenRequest.getRefreshToken();
+
+        return refreshTokenService.findByToken(refreshToken)
+                .map(refreshTokenService::verify)
+                .map(RefreshToken::getUser)
+                .map(user -> {
+                    String token = jwtProvider.generateToken(user);
+                    refreshTokenService.deleteByUser(user);
+                    RefreshToken refreshToken2 = refreshTokenService.createRefreshToken(user);
+                    return ResponseEntity.status(HttpStatus.CREATED)
+                            .body(JwtUserResponse.builder()
+                                    .token(token)
+                                    .refreshToken(refreshToken2.getToken())
+                                    .build());
+                })
+                .orElseThrow(() -> new RefreshTokenException("Refresh token not found"));
+
+    }
 
 }
