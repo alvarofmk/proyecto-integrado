@@ -15,7 +15,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public logIn(loginRequest: LoginRequest): Observable<LoginResponse>{
-    debugger;
     return this.http.post<LoginResponse>(`${environment.URL_BASE_API}/auth/login`, loginRequest);
   }
 
