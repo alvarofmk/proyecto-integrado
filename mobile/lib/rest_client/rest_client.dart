@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:front/model/refresh_result.dart';
 import 'package:front/model/restaurante_request.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_interceptor/http_interceptor.dart';
@@ -45,9 +46,35 @@ class AuthorizationInterceptor implements InterceptorContract {
   @override
   Future<ResponseData> interceptResponse({required ResponseData data}) async {
     if (data.statusCode == 401 || data.statusCode == 403) {
-      Future.delayed(Duration(seconds: 1), () {});
+      String? loggedUser = _localStorageService.getFromDisk("user");
+      if (loggedUser != null) {
+        var user = LoginResponse.fromJson(jsonDecode(loggedUser));
+        final refreshResponse = await http.post(
+            Uri.parse(ApiConstants.baseUrl + "/refreshtoken"),
+            body: jsonEncode({'refreshToken': user.refreshToken}),
+            headers: {
+              "Accept": "application/json",
+              "content-type": "application/json"
+            });
+        if (refreshResponse.statusCode == 201) {
+          RefreshTokenResponse respuesta =
+              RefreshTokenResponse.fromJson(jsonDecode(refreshResponse.body));
+          user.refreshToken = respuesta.refreshToken;
+          user.token = respuesta.token;
+          await _localStorageService.saveToDisk(
+              "user", jsonEncode(user.toJson()));
+          var request = data.request;
+          request!.headers["Authorization"] = "Bearer " + user.token!;
+          var retryResponseStream = await request.toHttpRequest().send();
+          var retryResponse =
+              await http.Response.fromStream(retryResponseStream);
+          /*var stringResponse = await finalResponse.stream.bytesToString();
+          var jsonResponse = jsonDecode(stringResponse);*/
+          var datos = ResponseData.fromHttpResponse(retryResponse);
+          return Future.value(datos);
+        }
+      }
     }
-
     return Future.value(data);
   }
 }
