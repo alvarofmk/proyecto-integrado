@@ -43,6 +43,7 @@ class JwtAuthenticationService extends AuthenticationService {
           email: user.username ?? "",
           name: user.nombre ?? "",
           accessToken: user.token ?? "",
+          refreshToken: user.refreshToken ?? "",
           roles: user.roles ?? List.empty());
     }
     return null;
@@ -59,6 +60,7 @@ class JwtAuthenticationService extends AuthenticationService {
         email: response.username ?? "",
         name: response.nombre ?? "",
         accessToken: response.token ?? "",
+        refreshToken: response.refreshToken ?? "",
         roles: response.roles ?? List.empty());
   }
 
