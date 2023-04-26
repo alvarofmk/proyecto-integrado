@@ -23594,6 +23594,10 @@ hr.horizontal.gray-light {
     margin-left: 17.125rem;
   }
 
+  .main-content{
+    margin-left: 17.125rem;
+  }
+
   .g-sidenav-hidden .navbar-vertical:hover .navbar-brand span {
     opacity: 1;
   }
@@ -26934,3 +26938,7 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+.nav-logo{
+  width: 100px;
+}

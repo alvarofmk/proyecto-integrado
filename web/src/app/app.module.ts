@@ -7,12 +7,17 @@ import { LoginComponent } from './pages/public/login/login.component';
 import { DashboardComponent } from './pages/private/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './pages/layout/footer/footer.component';
+import { SidenavComponent } from './pages/layout/sidenav/sidenav.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    FooterComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
