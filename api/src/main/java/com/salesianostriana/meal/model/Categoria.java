@@ -34,6 +34,8 @@ public class Categoria {
     @ManyToOne
     private Restaurante restaurante;
 
+    private int orden;
+
     private String nombre;
 
     @Override

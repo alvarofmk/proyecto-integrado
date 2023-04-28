@@ -33,7 +33,7 @@ public class DireccionEnvio {
 
     private String calle;
 
-    private int numero;
+    private String numero;
 
     private String poblacion;
 
@@ -43,7 +43,7 @@ public class DireccionEnvio {
 
     private String puerta;
 
-    private int piso;
+    private String piso;
 
     @ManyToOne
     private User usuario;
