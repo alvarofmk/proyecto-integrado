@@ -1,6 +1,8 @@
 package com.salesianostriana.meal.security.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.salesianostriana.meal.model.view.View;
 import com.salesianostriana.meal.security.user.Roles;
 import com.salesianostriana.meal.security.user.User;
 import lombok.AllArgsConstructor;
@@ -17,6 +19,8 @@ import java.util.Set;
 public class UserResponse {
 
     protected String id;
+
+    @JsonView({View.VentaView.VentaDetailView.class, View.VentaView.VentaOverView.class})
     protected String username, nombre, email;
     protected Set<Roles> roles;
 

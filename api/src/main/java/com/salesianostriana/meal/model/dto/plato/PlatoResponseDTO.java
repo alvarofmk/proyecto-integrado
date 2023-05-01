@@ -3,6 +3,7 @@ package com.salesianostriana.meal.model.dto.plato;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.salesianostriana.meal.model.Plato;
+import com.salesianostriana.meal.model.dto.restaurante.RestauranteResponseDTO;
 import com.salesianostriana.meal.model.view.View;
 import lombok.Builder;
 import lombok.Value;
@@ -27,6 +28,8 @@ public class PlatoResponseDTO {
 
     @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
     private double precio;
+
+    private RestauranteResponseDTO restaurante;
 
     @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
     private String imgUrl;
@@ -64,6 +67,7 @@ public class PlatoResponseDTO {
                 .sinGluten(plato.isSinGluten())
                 .valoraciones(valoraciones)
                 .valoracionMedia(plato.getValoracionMedia())
+                .restaurante(RestauranteResponseDTO.of(plato.getRestaurante()))
                 .build();
     }
 

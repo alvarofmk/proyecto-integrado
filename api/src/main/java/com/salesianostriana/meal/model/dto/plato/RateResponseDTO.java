@@ -8,6 +8,8 @@ import com.salesianostriana.meal.security.user.User;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Value
 public class RateResponseDTO {
@@ -21,12 +23,15 @@ public class RateResponseDTO {
     @JsonView({View.PlatoView.PlatoDetailView.class})
     private String comentario;
 
+    private LocalDateTime fecha;
+
     public static RateResponseDTO of(Valoracion valoracion){
         return RateResponseDTO.builder()
                 .username(valoracion.getUsuario().getUsername())
                 .nombrePlato(valoracion.getPlato().getNombre())
                 .nota(valoracion.getNota())
                 .comentario(valoracion.getComentario())
+                .fecha(valoracion.getFecha())
                 .build();
     }
 

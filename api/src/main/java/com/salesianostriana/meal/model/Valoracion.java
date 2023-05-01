@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.data.jpa.repository.EntityGraph;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -33,6 +34,8 @@ public class Valoracion {
 
     private double nota;
     private String comentario;
+
+    private LocalDateTime fecha;
 
     public void addUser(User user){
         this.usuario = user;

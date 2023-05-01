@@ -12,4 +12,10 @@ public class View {
         public static interface PlatoGenericView{}
     }
 
+    public static interface VentaView {
+        public static interface VentaOverView{}
+        public static interface VentaDetailView{}
+
+    }
+
 }

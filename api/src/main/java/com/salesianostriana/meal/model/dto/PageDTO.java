@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @JsonView({View.RestauranteView.RestauranteDetailView.class, View.RestauranteView.RestauranteGenericView.class,
-View.PlatoView.PlatoDetailView.class, View.PlatoView.PlatoGenericView.class})
+View.PlatoView.PlatoDetailView.class, View.PlatoView.PlatoGenericView.class, View.VentaView.VentaDetailView.class, View.VentaView.VentaOverView.class})
 public class PageDTO<T> {
 
     private List<T> contenido;

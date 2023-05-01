@@ -75,6 +75,7 @@ public class SecurityConfig {
                                 .antMatchers(HttpMethod.DELETE,"/restaurante/**").hasAnyRole("ADMIN","OWNER")
                                 .antMatchers(HttpMethod.POST,"/restaurante/**").hasAnyRole("ADMIN","OWNER")
                                 .antMatchers(HttpMethod.PUT,"/restaurante/**").hasAnyRole("ADMIN","OWNER")
+                                .antMatchers("/venta/").hasAnyRole("ADMIN","OWNER")
                                 .antMatchers("/restaurante/managed").hasAnyRole("ADMIN","OWNER")
                                 .antMatchers("/plato/rate/**").authenticated()
                                 .antMatchers(HttpMethod.DELETE,"/plato/**").hasAnyRole("ADMIN","OWNER")
