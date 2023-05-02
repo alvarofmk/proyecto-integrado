@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './pages/layout/footer/footer.component';
 import { SidenavComponent } from './pages/layout/sidenav/sidenav.component';
 import { HttpinterceptorService } from './core/services/httpinterceptor.service';
+import { RestaurantsComponent } from './pages/private/restaurants/restaurants.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpinterceptorService } from './core/services/httpinterceptor.service'
     LoginComponent,
     DashboardComponent,
     FooterComponent,
-    SidenavComponent
+    SidenavComponent,
+    RestaurantsComponent
   ],
   imports: [
     BrowserModule,

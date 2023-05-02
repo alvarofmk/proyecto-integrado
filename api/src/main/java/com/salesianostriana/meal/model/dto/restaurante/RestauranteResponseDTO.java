@@ -23,7 +23,7 @@ public class RestauranteResponseDTO {
     @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class})
     private String nombre;
 
-    @JsonView({View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class})
     private String descripcion;
 
     @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class})
