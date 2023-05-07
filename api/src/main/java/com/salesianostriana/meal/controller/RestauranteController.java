@@ -105,7 +105,7 @@ public class RestauranteController {
                                                          @Valid @RequestPart("body") RestauranteRequestDTO restauranteDto){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(RestauranteResponseDTO.of(service.add(restauranteDto.toRestaurante(), loggedUser, file)));
+                .body(RestauranteResponseDTO.of(service.add(restauranteDto, loggedUser, file)));
     }
 
     @Operation(summary = "Obtiene la imagen de un restaurante")

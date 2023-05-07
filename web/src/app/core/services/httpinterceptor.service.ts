@@ -16,26 +16,27 @@ export class HttpinterceptorService implements HttpInterceptor {
 
     let request = req;
 
-    if (token) {
-      request = req.clone({
-        setHeaders: {
-          authorization: `Bearer ${ token }`
-        }
-      });
+    if(!req.url.endsWith("login")){
+      if (token) {
+        request = req.clone({
+          setHeaders: {
+            authorization: `Bearer ${ token }`
+          }
+        });
+      }
+  
     }
-
     return next.handle(request).pipe(
-      catchError((err: HttpErrorResponse) => {
-
-        if (err.status === 401) {
-          this.router.navigateByUrl('/login');
-        }
-
-        return throwError( err );
-
-      })
-    );
-
+        catchError((err: HttpErrorResponse) => {
+  
+          if (err.status === 401) {
+            this.router.navigateByUrl('/login');
+          }
+  
+          return throwError( err );
+  
+        })
+      );
   }
 
 }
