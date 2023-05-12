@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginRequest } from '../model/loginRequest';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, @Inject(Router) private router: Router) { }
 
   public logIn(loginRequest: LoginRequest): Observable<LoginResponse>{
     return this.http.post<LoginResponse>(`${environment.URL_BASE_API}/auth/login`, loginRequest);

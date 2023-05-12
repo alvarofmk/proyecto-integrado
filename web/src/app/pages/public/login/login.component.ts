@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.value.usuario,
       password: this.loginForm.value.pass
     }
+    debugger;
     this.loginService.logIn(request).subscribe(response => {
+      debugger;
       localStorage.setItem("token", response.token);
       this.router.navigate(['dashboard']);
     });

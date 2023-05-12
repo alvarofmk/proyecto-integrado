@@ -12,19 +12,33 @@ export class HttpinterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token: string | null = localStorage.getItem('token');
+    if(!req.url.endsWith('login')){
 
-    let request = req;
-
-    if (token) {
-      request = req.clone({
-        setHeaders: {
-          authorization: `Bearer ${ token }`
-        }
-      });
+      const token: string | null = localStorage.getItem('token');
+  
+      let request = req;
+  
+      if (token) {
+        request = req.clone({
+          setHeaders: {
+            authorization: `Bearer ${ token }`
+          }
+        });
+      }
+  
+      return next.handle(request).pipe(
+        catchError((err: HttpErrorResponse) => {
+  
+          if (err.status === 401) {
+            this.router.navigateByUrl('/login');
+          }
+  
+          return throwError( err );
+  
+        })
+      );
     }
-
-    return next.handle(request).pipe(
+    return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
 
         if (err.status === 401) {
