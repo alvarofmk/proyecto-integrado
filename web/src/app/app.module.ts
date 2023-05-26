@@ -12,6 +12,7 @@ import { SidenavComponent } from './pages/layout/sidenav/sidenav.component';
 import { HttpinterceptorService } from './core/services/httpinterceptor.service';
 import { RestaurantsComponent } from './pages/private/restaurants/restaurants.component';
 import { PlatosComponent } from './pages/private/platos/platos.component';
+import { RestaurantformComponent } from './pages/private/restaurantform/restaurantform.component';
 
 
 @NgModule({
@@ -22,10 +23,9 @@ import { PlatosComponent } from './pages/private/platos/platos.component';
     FooterComponent,
     SidenavComponent,
     RestaurantsComponent,
-    PlatosComponent
-  ],
+    PlatosComponent,
+  ], 
   imports: [
-    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule

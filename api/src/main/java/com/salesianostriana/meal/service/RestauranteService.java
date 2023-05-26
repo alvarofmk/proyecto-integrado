@@ -2,6 +2,7 @@ package com.salesianostriana.meal.service;
 
 import com.salesianostriana.meal.error.exception.NotOwnerException;
 import com.salesianostriana.meal.error.exception.RestaurantInUseException;
+import com.salesianostriana.meal.model.Cocina;
 import com.salesianostriana.meal.model.Plato;
 import com.salesianostriana.meal.model.Restaurante;
 import com.salesianostriana.meal.model.dto.restaurante.RestauranteRequestDTO;
@@ -17,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,6 +32,8 @@ public class RestauranteService {
     private final UserService userService;
     private final StorageService storageService;
 
+    private final CocinaService cocinaService;
+
     public Page<Restaurante> findAll(Pageable pageable){
         Page<Restaurante> result = repository.findAll(pageable);
         if(result.getNumberOfElements() == 0){
@@ -37,10 +42,15 @@ public class RestauranteService {
         return result;
     }
 
-    public Restaurante add(Restaurante restaurante, User loggedUser, MultipartFile file){
-        restaurante.setRestaurantAdmin(loggedUser);
-        restaurante.setCoverImgUrl(storageService.store(file));
-        return repository.save(restaurante);
+    public Restaurante add(RestauranteRequestDTO restauranteDTO, User loggedUser, MultipartFile file){
+        Restaurante nuevoRestaurante = restauranteDTO.toRestaurante();
+        nuevoRestaurante.setCocina(new ArrayList<Cocina>());
+        restauranteDTO.getCocinas().forEach(c -> {
+            nuevoRestaurante.getCocina().add(cocinaService.findById(c));
+        });
+        nuevoRestaurante.setRestaurantAdmin(loggedUser);
+        nuevoRestaurante.setCoverImgUrl(storageService.store(file));
+        return repository.save(nuevoRestaurante);
     }
 
     @Transactional

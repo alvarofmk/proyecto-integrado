@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.URL;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.UUID;
 
 @Builder
 @Value
@@ -22,6 +24,8 @@ public class RestauranteRequestDTO {
 
     private LocalTime apertura;
     private LocalTime cierre;
+
+    private List<UUID> cocinas;
 
     public Restaurante toRestaurante(){
         return Restaurante.builder()
