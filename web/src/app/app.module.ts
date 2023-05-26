@@ -24,11 +24,13 @@ import { RestaurantformComponent } from './pages/private/restaurantform/restaura
     SidenavComponent,
     RestaurantsComponent,
     PlatosComponent,
+    RestaurantformComponent
   ], 
   imports: [
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule
   ],
   providers: [
     {

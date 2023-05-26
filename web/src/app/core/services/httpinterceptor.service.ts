@@ -14,16 +14,10 @@ export class HttpinterceptorService implements HttpInterceptor {
 
     if(!req.url.endsWith('login')){
 
-<<<<<<< HEAD
       const token: string | null = localStorage.getItem('token');
   
       let request = req;
   
-=======
-    let request = req;
-
-    if(!req.url.endsWith("login")){
->>>>>>> 7-fe013-pagina-restaurantes-admin-y-propietario
       if (token) {
         request = req.clone({
           setHeaders: {
@@ -32,7 +26,6 @@ export class HttpinterceptorService implements HttpInterceptor {
         });
       }
   
-<<<<<<< HEAD
       return next.handle(request).pipe(
         catchError((err: HttpErrorResponse) => {
   
@@ -57,20 +50,6 @@ export class HttpinterceptorService implements HttpInterceptor {
       })
     );
 
-=======
-    }
-    return next.handle(request).pipe(
-        catchError((err: HttpErrorResponse) => {
-  
-          if (err.status === 401) {
-            this.router.navigateByUrl('/login');
-          }
-  
-          return throwError( err );
-  
-        })
-      );
->>>>>>> 7-fe013-pagina-restaurantes-admin-y-propietario
   }
 
 }
