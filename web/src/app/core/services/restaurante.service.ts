@@ -12,6 +12,7 @@ const mapping = "restaurante"
   providedIn: 'root'
 })
 export class RestauranteService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -28,5 +29,12 @@ export class RestauranteService {
     return this.http.post<RestauranteResponse>(`${environment.URL_BASE_API}/${mapping}/`, formData)
   }
 
+  public getById(id: String): Observable<RestauranteResponse> {
+    return this.http.get<RestauranteResponse>(`${environment.URL_BASE_API}/${mapping}/${id}`);
+  }
+
+  edit(restaurant: RestauranteRequest, id: string) {
+    return this.http.put<RestauranteResponse>(`${environment.URL_BASE_API}/${mapping}/${id}`, restaurant);
+  }
 
 }

@@ -73,12 +73,26 @@ public class RestauranteService {
             r.setCierre(restauranteRequestDTO.getCierre());
             r.setNombre(restauranteRequestDTO.getNombre());
             r.setDescripcion(restauranteRequestDTO.getDescripcion());
+            r.setCocina(cocinaService.findByIds(restauranteRequestDTO.getCocinas()));
             return repository.save(r);
         }).orElseThrow(() -> new EntityNotFoundException());
     }
 
+    @Transactional
+    public Restaurante findDetails(UUID id){
+        Restaurante result;
+        result = findWithMenu(id);
+        if(result != null){
+            findOneWithCocinas(id);
+        }
+        return result;
+    }
+
     public Restaurante findWithMenu(UUID id) {
         return repository.findOneWithMenu(id).orElseThrow(() -> new EntityNotFoundException());
+    }
+    public Restaurante findOneWithCocinas(UUID id) {
+        return repository.findOneWithCocinas(id).orElseThrow(() -> new EntityNotFoundException());
     }
 
     public Restaurante changeImg(User loggedUser, UUID id, MultipartFile file) {

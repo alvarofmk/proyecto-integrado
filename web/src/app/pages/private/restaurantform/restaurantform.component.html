@@ -29,7 +29,7 @@
                 <label for="descripcion">Descripcion</label>
                 <textarea class="form-control" id="descripcion" rows="3" formControlName="descripcion"></textarea>
               </div>
-              <div class="form-group">
+              <div class="form-group" *ngIf="this.restaurantToEdit == undefined">
                 <label for="imagen">Imagen</label>
                 <input class="form-control" type="file" id="imagen" formControlName="imagen" (change)="this.onFilechange($event)">
               </div>

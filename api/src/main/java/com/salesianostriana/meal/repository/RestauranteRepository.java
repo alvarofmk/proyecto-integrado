@@ -19,5 +19,9 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> 
     @Query("SELECT r FROM Restaurante r WHERE r.id = :id")
     public Optional<Restaurante> findOneWithMenu(UUID id);
 
+    @EntityGraph("restaurante-con-cocina")
+    @Query("SELECT r FROM Restaurante r WHERE r.id = :id")
+    public Optional<Restaurante> findOneWithCocinas(UUID id);
+
     Page<Restaurante> findByRestaurantAdmin(User loggedUser, Pageable pageable);
 }

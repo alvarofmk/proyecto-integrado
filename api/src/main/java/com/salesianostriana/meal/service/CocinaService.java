@@ -25,4 +25,9 @@ public class CocinaService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException());
     }
 
+    public List<Cocina> findByIds(List<UUID> cocinas) {
+        List<Cocina> result = repository.findByIds(cocinas);
+        if (result.isEmpty()) throw new EntityNotFoundException();
+        return result;
+    }
 }

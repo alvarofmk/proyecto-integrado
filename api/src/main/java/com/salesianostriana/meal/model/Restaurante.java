@@ -19,6 +19,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @NamedEntityGraph(name = "restaurante-con-platos", attributeNodes = @NamedAttributeNode(value = "platos"))
+@NamedEntityGraph(name = "restaurante-con-cocina", attributeNodes = @NamedAttributeNode(value = "cocina"))
 public class Restaurante {
 
     @Id

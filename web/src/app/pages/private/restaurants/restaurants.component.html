@@ -29,7 +29,7 @@
                       <h2>{{restaurante.nombre}}</h2>
                       <p>{{restaurante.descripcion}}</p>
                       <div class="d-flex">
-                        <button type="button" class="btn btn-outline-primary mx-1">Editar datos</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/restaurantform/' + restaurante.id">Editar datos</button>
                         <button type="button" class="btn btn-outline-primary mx-1">Gestionar platos</button>
                         <button type="button" class="btn btn-outline-primary mx-1">Añadir nuevo plato</button>
                         <button type="button" class="btn btn-outline-primary mx-1">Eliminar restaurante</button>

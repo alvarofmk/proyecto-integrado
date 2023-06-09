@@ -80,7 +80,7 @@ public class RestauranteController {
     @GetMapping("/{id}")
     @JsonView(View.RestauranteView.RestauranteDetailView.class)
     public RestauranteResponseDTO findById(@PathVariable UUID id){
-        return RestauranteResponseDTO.of(service.findWithMenu(id));
+        return RestauranteResponseDTO.of(service.findDetails(id));
     }
 
     @Operation(summary = "Crea un nuevo restaurante")
