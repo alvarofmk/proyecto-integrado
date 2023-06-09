@@ -5655,7 +5655,12 @@ fieldset:disabled .btn {
   --bs-alert-border-color: transparent;
   --bs-alert-border: 1px solid var(--bs-alert-border-color);
   --bs-alert-border-radius: 0.5rem;
-  position: relative;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: auto;
+  border: 3px solid #73AD21;
   padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
   margin-bottom: var(--bs-alert-margin-bottom);
   color: var(--bs-alert-color);

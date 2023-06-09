@@ -1,3 +1,31 @@
 .restaurantimg{
     max-height: 150px;
 }
+
+.imgcontainer {
+    position: relative;
+  }
+  
+  /* Make the image responsive */
+  .imgcontainer img {
+    height: auto;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .imgcontainer .changeimgbutton {
+    position: absolute;
+    margin: 0px;
+    right: 10px;
+    bottom: 10px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 500px;
+  }
+
+.hidden{
+  display: none;
+}

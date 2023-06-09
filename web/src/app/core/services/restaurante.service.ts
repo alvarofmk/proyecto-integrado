@@ -33,8 +33,18 @@ export class RestauranteService {
     return this.http.get<RestauranteResponse>(`${environment.URL_BASE_API}/${mapping}/${id}`);
   }
 
-  edit(restaurant: RestauranteRequest, id: string) {
+  public edit(restaurant: RestauranteRequest, id: string) {
     return this.http.put<RestauranteResponse>(`${environment.URL_BASE_API}/${mapping}/${id}`, restaurant);
+  }
+
+  public delete(id: string) {
+    return this.http.delete(`${environment.URL_BASE_API}/${mapping}/${id}`);
+  }
+
+  public editImg(id: string, imagen: File): Observable<RestauranteResponse> {
+    let formData = new FormData();
+    formData.append('file', imagen, imagen.name);
+    return this.http.put<RestauranteResponse>(`${environment.URL_BASE_API}/${mapping}/${id}/img/`, formData);
   }
 
 }

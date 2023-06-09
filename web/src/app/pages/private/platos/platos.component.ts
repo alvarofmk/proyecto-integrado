@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PlatoResponse } from 'src/app/core/model/plato';
 import { RestauranteResponse } from 'src/app/core/model/restauranteResponse';
 import { PlatoService } from 'src/app/core/services/plato.service';
@@ -18,14 +19,23 @@ export class PlatosComponent implements OnInit {
   restauranteSelected: RestauranteResponse | undefined;
   platoEliminar: PlatoResponse | undefined;
   eliminado: boolean = false;
+  idSelected: string = "";
 
-  constructor(private platoService: PlatoService, private restaurantservice: RestauranteService) { }
+  constructor(private platoService: PlatoService, private restaurantservice: RestauranteService, private route: ActivatedRoute) { }
+
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => this.idSelected = params['idRestaurante']);
+    debugger;
     this.restaurantservice.getManaged().subscribe(res => {
       this.restaurantes = res.contenido;
-      this.restauranteSelected = this.restaurantes[0];
-      this.platoService.getFromRestaurante(this.restauranteSelected.id, 0, 15).subscribe(platos => this.platos = platos.contenido);
+      if(this.idSelected != undefined){
+        this.restauranteSelected = this.restaurantes.find(r => r.id == this.idSelected);
+        this.platoService.getFromRestaurante(this.restauranteSelected!.id, 0, 15).subscribe(platos => this.platos = platos.contenido);
+      }else{
+        this.restauranteSelected = this.restaurantes[0];
+        this.platoService.getFromRestaurante(this.restauranteSelected.id, 0, 15).subscribe(platos => this.platos = platos.contenido);
+      }
     })
   }
 
@@ -41,6 +51,11 @@ export class PlatosComponent implements OnInit {
       
     );
     
+  }
+
+  selectRestaurante(restaurant: RestauranteResponse){
+    this.restauranteSelected = restaurant;
+    this.platoService.getFromRestaurante(this.restauranteSelected.id, 0, 15).subscribe(platos => this.platos = platos.contenido);
   }
 
 }

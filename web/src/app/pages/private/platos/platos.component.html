@@ -43,6 +43,14 @@
             <div class="card mb-4">
               <div class="card-header pb-0">
                 <h6>Platos</h6>
+                <div class="dropdown">
+                  <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{restauranteSelected!.nombre}}
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li *ngFor="let restaurant of restaurantes"><a class="dropdown-item" (click)="selectRestaurante(restaurant)">{{restaurant.nombre}}</a></li>
+                  </ul>
+                </div>
               </div>
               <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">

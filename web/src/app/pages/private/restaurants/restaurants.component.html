@@ -24,15 +24,20 @@
               </div>
               <div class="card-body px-0 pt-0 pb-2">
                 <div class="d-flex p-4" *ngFor="let restaurante of restaurantes">
-                    <img class="card restaurantimg" [src]="'http://localhost:8080/download' + '/' + restaurante.coverImgUrl" alt="">
+                    
+                    <div class="imgcontainer">
+                      <img class="card restaurantimg" [src]="'http://localhost:8080/download' + '/' + restaurante.coverImgUrl" alt="">
+                        <input type="file" id="imagen" class="hidden" (change)="this.onFilechange($event, restaurante.id)">
+                        <label for="imagen" class="btn btn-icon btn-2 btn-primary changeimgbutton"><i class="ni ni-image"></i></label>
+                    </div>
                     <div class="mx-4">
                       <h2>{{restaurante.nombre}}</h2>
                       <p>{{restaurante.descripcion}}</p>
                       <div class="d-flex">
                         <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/restaurantform/' + restaurante.id">Editar datos</button>
-                        <button type="button" class="btn btn-outline-primary mx-1">Gestionar platos</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/platos/' + restaurante.id">Gestionar platos</button>
                         <button type="button" class="btn btn-outline-primary mx-1">Añadir nuevo plato</button>
-                        <button type="button" class="btn btn-outline-primary mx-1">Eliminar restaurante</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" (click)="eliminar(restaurante.id)">Eliminar restaurante</button>
                       </div>
                     </div>
                     
@@ -47,6 +52,18 @@
           </div>
         </div>
         <app-footer></app-footer>
+        <div *ngIf="showSuccessDelete" class="alert alert-success" role="alert">
+          <strong>Restaurante borrado con éxito.</strong>
+        </div>
+        <div *ngIf="showSuccessImg" class="alert alert-success" role="alert">
+          <strong>Imagen actualizada con éxito.</strong>
+        </div>
+        <div *ngIf="showErrorDelete" class="alert alert-danger" role="alert">
+          <strong>No se ha podido borrar el restaurante.</strong> Debe eliminar primero sus platos.
+        </div>
+        <div *ngIf="showErrorImg" class="alert alert-danger" role="alert">
+          <strong>No se ha cambiar la imagen.</strong> La imagen es demasiado grande o su formato es erroneo.
+        </div>
       </div>
     </main>
     <div class="fixed-plugin">
