@@ -5,12 +5,14 @@ import 'package:front/config/locator.dart';
 import 'package:front/home_screen.dart';
 import 'package:front/landing/landing_screen.dart';
 import 'package:front/service/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'auth/auth_bloc.dart';
 
 void main() {
   setupAsyncDependencies();
   configureDependencies();
+  SharedPreferences.setMockInitialValues({});
   runApp(BlocProvider<AuthenticationBloc>(
     create: (context) {
       final authService = getIt<JwtAuthenticationService>();

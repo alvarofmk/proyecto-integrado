@@ -25,13 +25,10 @@ abstract class AuthenticationService {
 @singleton
 class JwtAuthenticationService extends AuthenticationService {
   late AuthenticationRepository _authenticationRepository;
-  late LocalStorageService _localStorageService;
+  LocalStorageService _localStorageService = LocalStorageService();
 
   JwtAuthenticationService() {
     _authenticationRepository = GetIt.I.get<AuthenticationRepository>();
-    GetIt.I
-        .getAsync<LocalStorageService>()
-        .then((value) => _localStorageService = value);
   }
 
   @override

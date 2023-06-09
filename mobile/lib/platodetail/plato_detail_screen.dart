@@ -8,7 +8,7 @@ import 'package:front/login/login_screen.dart';
 import 'package:front/model/plato_detail_result.dart';
 import 'package:front/platodetail/platodetail_bloc.dart';
 
-const String imgBase = "http://localhost:8080/download/";
+const String imgBase = "http://10.0.2.2:8080/download/";
 
 class PlatoScreen extends StatelessWidget {
   PlatoScreen({super.key, required this.platoId});

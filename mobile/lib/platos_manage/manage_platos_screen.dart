@@ -10,7 +10,7 @@ import '../model/plato_request.dart';
 import '../restaurantmenu/restaurant_screen.dart';
 
 String id = "";
-const String imgBasePlato = "http://localhost:8080/download/";
+const String imgBasePlato = "http://10.0.2.2:8080/download/";
 
 class ManagePlatosScreen extends StatelessWidget {
   ManagePlatosScreen({super.key, required this.restaurantId});

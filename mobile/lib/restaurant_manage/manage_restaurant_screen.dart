@@ -13,7 +13,7 @@ import 'manage_restaurant_bloc.dart';
 import 'manage_restaurant_edit.dart';
 import 'manage_restaurant_event.dart';
 
-String imgBase = "http://localhost:8080/download/";
+String imgBase = "http://10.0.2.2:8080/download/";
 
 class ManageRestaurantScreen extends StatelessWidget {
   ManageRestaurantScreen({super.key, required this.restaurantId});

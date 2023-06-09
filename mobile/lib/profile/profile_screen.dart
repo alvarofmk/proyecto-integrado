@@ -9,7 +9,7 @@ import '../model/login_model.dart';
 import '../password_change/password_change_screen.dart';
 import '../restaurant_manage/manage_restaurant_screen.dart';
 
-const String imgBase = "http://localhost:8080/restaurante/";
+const String imgBase = "http://10.0.2.2:8080/restaurante/";
 const String imgSuffix = "/img/";
 
 class ProfileScreen extends StatelessWidget {

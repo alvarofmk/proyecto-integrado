@@ -7,7 +7,7 @@ import 'package:front/restaurantmenu/restaurant_screen.dart';
 
 import '../auth/auth_bloc.dart';
 
-const String imgBase = "http://localhost:8080/download/";
+const String imgBase = "http://10.0.2.2:8080/download/";
 
 final TextEditingController controller = new TextEditingController();
 

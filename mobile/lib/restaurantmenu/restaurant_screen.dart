@@ -8,8 +8,8 @@ import '../landing/landing_bloc.dart';
 import '../landing/landing_screen.dart';
 import '../platodetail/plato_detail_screen.dart';
 
-const String imgBase = "http://localhost:8080/download/";
-const String imgBasePlato = "http://localhost:8080/download/";
+const String imgBase = "http://10.0.2.2:8080/download/";
+const String imgBasePlato = "http://10.0.2.2:8080/download/";
 
 class RestaurantScreen extends StatelessWidget {
   RestaurantScreen({super.key, required this.restaurantId});
