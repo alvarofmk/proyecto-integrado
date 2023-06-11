@@ -10,60 +10,60 @@
               <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Inicio</a></li>
               <li class="breadcrumb-item text-sm text-white active" aria-current="page">Restaurantes</li>
             </ol>
-            <h6 class="font-weight-bolder text-white mb-0">Restaurantes</h6>
+            <h6 class="font-weight-bolder text-white mb-0">Categorias</h6>
           </nav>
         </div>
       </nav>
       <!-- End Navbar -->
       <div class="container-fluid py-4">
         <div class="row">
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Nueva categoria</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="categoriaForm" (ngSubmit)="addCategoria()">
+                    <div class="form-group">
+                        <label for="nombre" class="form-control-label">Nombre</label>
+                        <input class="form-control" type="text" id="nombre" formControlName="nombre">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="!categoriaForm.valid">Guardar</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="col-12">
             <div class="card mb-4">
               <div class="card-header pb-0">
-                <h6>Gestiona tus restaurantes</h6>
+                <h6>Gestiona tus categorias</h6>
               </div>
-              <div class="card-body px-0 pt-0 pb-2">
-                <div class="d-flex p-4" *ngFor="let restaurante of restaurantes">
-                    
-                    <div class="imgcontainer">
-                      <img class="card restaurantimg" [src]="'http://localhost:8080/download' + '/' + restaurante.coverImgUrl" alt="">
-                        <input type="file" id="imagen" class="hidden" (change)="this.onFilechange($event, restaurante.id)">
-                        <label for="imagen" class="btn btn-icon btn-2 btn-primary changeimgbutton"><i class="ni ni-image"></i></label>
-                    </div>
-                    <div class="mx-4">
-                      <h2>{{restaurante.nombre}}</h2>
-                      <p>{{restaurante.descripcion}}</p>
-                      <div class="d-flex">
-                        <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/restaurantform/' + restaurante.id">Editar datos</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/platos/' + restaurante.id">Gestionar platos</button>
-                        <button type="button" class="btn btn-outline-primary mx-1">Añadir nuevo plato</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/categorias/' + restaurante.id">Gestionar categorias</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" (click)="eliminar(restaurante.id)">Eliminar restaurante</button>
-                      </div>
-                    </div>
-                    
+              <div class="card-body px-0 pt-0 pb-2 listaCategorias" cdkDropList  (cdkDropListDropped)="drop($event)">
+                <div class="shadow d-flex p-3 mx-4 my-3 rounded justify-content-start align-items-baseline categoria" *ngFor="let categoria of categorias" cdkDrag >
+                  <div class="drag-placeholder" *cdkDragPlaceholder></div>  
+                  <p class="orden">{{categoria.orden}}</p>
+                    <p>{{categoria.nombre}}</p>
+                    <i class="bi bi-grip-horizontal ml-auto"></i>
                 </div>
-                
-                
               </div>
-              <div class="mx-auto card-footer">
-                <button type="button" class="btn btn-primary btn-lg " routerLink='/restaurantform'>Añadir nuevo restaurante <i class="bi bi-plus-circle-fill"></i></button>
+              <div class="mx-auto card-footer d-flex gap-3">
+                <button type="button" class="btn btn-primary btn-lg " data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir nueva Categoria  <i class="bi bi-plus-circle-fill"></i></button>
+                <button *ngIf="modified" type="button" class="btn btn-primary btn-lg " (click)="save()">Guardar</button>
               </div>
             </div>
           </div>
         </div>
         <app-footer></app-footer>
-        <div *ngIf="showSuccessDelete" class="alert alert-success" role="alert">
-          <strong>Restaurante borrado con éxito.</strong>
+        <div *ngIf="showSuccessSave" class="alert alert-success" role="alert">
+          <strong>Categorías actualizadas con éxito.</strong>
         </div>
-        <div *ngIf="showSuccessImg" class="alert alert-success" role="alert">
-          <strong>Imagen actualizada con éxito.</strong>
-        </div>
-        <div *ngIf="showErrorDelete" class="alert alert-danger" role="alert">
-          <strong>No se ha podido borrar el restaurante.</strong> Debe eliminar primero sus platos.
-        </div>
-        <div *ngIf="showErrorImg" class="alert alert-danger" role="alert">
-          <strong>No se ha cambiar la imagen.</strong> La imagen es demasiado grande o su formato es erroneo.
+        <div *ngIf="showErrorSave" class="alert alert-danger" role="alert">
+          <strong>No se han podido guardar las categorias.</strong>
         </div>
       </div>
     </main>

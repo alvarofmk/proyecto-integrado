@@ -13,6 +13,8 @@ import { HttpinterceptorService } from './core/services/httpinterceptor.service'
 import { RestaurantsComponent } from './pages/private/restaurants/restaurants.component';
 import { PlatosComponent } from './pages/private/platos/platos.component';
 import { RestaurantformComponent } from './pages/private/restaurantform/restaurantform.component';
+import { MaterialModule } from './material/material.module';
+import { CategoriasComponent } from './pages/private/categorias/categorias.component';
 
 
 @NgModule({
@@ -24,13 +26,15 @@ import { RestaurantformComponent } from './pages/private/restaurantform/restaura
     SidenavComponent,
     RestaurantsComponent,
     PlatosComponent,
-    RestaurantformComponent
+    RestaurantformComponent,
+    CategoriasComponent
   ], 
   imports: [
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserModule
+    BrowserModule,
+    MaterialModule
   ],
   providers: [
     {

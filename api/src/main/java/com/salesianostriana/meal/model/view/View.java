@@ -18,4 +18,9 @@ public class View {
 
     }
 
+    public static interface CategoriaView {
+        public static interface CategoriaOverview{}
+
+    }
+
 }

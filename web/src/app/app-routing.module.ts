@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/public/login/login.component';
 import { RestaurantsComponent } from './pages/private/restaurants/restaurants.component';
 import { PlatosComponent } from './pages/private/platos/platos.component';
 import { RestaurantformComponent } from './pages/private/restaurantform/restaurantform.component';
+import { CategoriasComponent } from './pages/private/categorias/categorias.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'platos/:idRestaurante', component: PlatosComponent},
   { path: 'restaurantform', component: RestaurantformComponent},
   { path: 'restaurantform/:id', component: RestaurantformComponent},
+  { path: 'categorias/:id', component: CategoriasComponent},
 ];
 
 @NgModule({
