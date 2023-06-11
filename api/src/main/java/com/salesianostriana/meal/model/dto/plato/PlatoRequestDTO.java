@@ -1,6 +1,7 @@
 package com.salesianostriana.meal.model.dto.plato;
 
 import com.salesianostriana.meal.model.Plato;
+import com.salesianostriana.meal.model.dto.categoria.CategoriaRequestDTO;
 import lombok.Builder;
 import lombok.Value;
 import org.hibernate.validator.constraints.URL;
@@ -31,6 +32,8 @@ public class PlatoRequestDTO {
     @NotNull
     private boolean sinGluten;
 
+    private CategoriaRequestDTO categoria;
+
 
     public Plato toPlato(){
         return Plato.builder()
@@ -39,6 +42,7 @@ public class PlatoRequestDTO {
                 .precio(precio)
                 .ingredientes(ingredientes)
                 .sinGluten(sinGluten)
+                .categoria(categoria.toCategoria())
                 .build();
     }
 

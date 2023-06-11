@@ -15,6 +15,7 @@ import { PlatosComponent } from './pages/private/platos/platos.component';
 import { RestaurantformComponent } from './pages/private/restaurantform/restaurantform.component';
 import { MaterialModule } from './material/material.module';
 import { CategoriasComponent } from './pages/private/categorias/categorias.component';
+import { PlatoformComponent } from './pages/private/platoform/platoform.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CategoriasComponent } from './pages/private/categorias/categorias.compo
     RestaurantsComponent,
     PlatosComponent,
     RestaurantformComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    PlatoformComponent
   ], 
   imports: [
     AppRoutingModule,

@@ -16,15 +16,15 @@ import java.util.UUID;
 @Value
 public class CategoriaResponseDTO {
 
-    @JsonView({View.CategoriaView.CategoriaOverview.class})
+    @JsonView({View.CategoriaView.CategoriaOverview.class, View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
     private UUID id;
 
     private Restaurante restaurante;
 
-    @JsonView({View.CategoriaView.CategoriaOverview.class})
+    @JsonView({View.CategoriaView.CategoriaOverview.class, View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
     private int orden;
 
-    @JsonView({View.CategoriaView.CategoriaOverview.class})
+    @JsonView({View.CategoriaView.CategoriaOverview.class , View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
     private String nombre;
 
     public static CategoriaResponseDTO of(Categoria categoria){

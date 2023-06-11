@@ -20,6 +20,11 @@ export class PlatosComponent implements OnInit {
   platoEliminar: PlatoResponse | undefined;
   eliminado: boolean = false;
   idSelected: string = "";
+  file: File | undefined = undefined;
+  showSuccessImg: boolean = false;
+  showErrorImg: boolean = false;
+  showErrorDelete: boolean = false;
+  showSuccessDelete: boolean = false;
 
   constructor(private platoService: PlatoService, private restaurantservice: RestauranteService, private route: ActivatedRoute) { }
 
@@ -44,18 +49,45 @@ export class PlatosComponent implements OnInit {
   }
 
   eliminar() {
-    this.platoService.delete(this.platoEliminar!.id).subscribe(
-      (res) => this.platos = this.platos.filter(p => p.id != this.platoEliminar!.id),
-      (err) => console.error("No se ha podido borrar el plato"),
-      () => console.log("observable complete")
-      
-    );
-    
+    this.platoService.delete(this.platoEliminar!.id).subscribe({
+      next: Response => {
+        this.platos = this.platos.filter(p => p.id != this.platoEliminar!.id),
+        this.showSuccessDelete= true;
+        setTimeout(() => {
+          this.showSuccessDelete = true;
+        }, 2000);
+      },
+      error: error => {
+        this.showErrorDelete = true;
+        setTimeout(() => {
+          this.showErrorDelete = false;
+        }, 3000);
+      }
+    }); 
   }
 
   selectRestaurante(restaurant: RestauranteResponse){
     this.restauranteSelected = restaurant;
     this.platoService.getFromRestaurante(this.restauranteSelected.id, 0, 15).subscribe(platos => this.platos = platos.contenido);
+  }
+
+  onFilechange(event: any, id: string) {
+    console.log(event.target.files[0])
+    this.file = event.target.files[0]
+    this.platoService.editImg(id, this.file!).subscribe({
+      next: Response => {
+        this.showSuccessImg = true;
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      },
+      error: error => {
+        this.showErrorImg = true;
+        setTimeout(() => {
+          this.showErrorImg = false;
+        }, 3000);
+      }
+    })
   }
 
 }

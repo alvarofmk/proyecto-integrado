@@ -3,6 +3,7 @@ package com.salesianostriana.meal.model.dto.plato;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.salesianostriana.meal.model.Plato;
+import com.salesianostriana.meal.model.dto.categoria.CategoriaResponseDTO;
 import com.salesianostriana.meal.model.dto.restaurante.RestauranteResponseDTO;
 import com.salesianostriana.meal.model.view.View;
 import lombok.Builder;
@@ -48,14 +49,23 @@ public class PlatoResponseDTO {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private double valoracionMedia;
 
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    private CategoriaResponseDTO categoria;
 
     public static PlatoResponseDTO of(Plato plato){
         List<RateResponseDTO> valoraciones = new ArrayList<>();
+        CategoriaResponseDTO categoria = null;
         try{
             valoraciones = plato.getValoraciones().stream().map(RateResponseDTO::of).toList();
         }catch(LazyInitializationException exception){
             valoraciones = new ArrayList<>();
+        }
+
+        try{
+            categoria = CategoriaResponseDTO.of(plato.getCategoria());
+        }catch(LazyInitializationException exception){
+            categoria = null;
         }
         return PlatoResponseDTO.builder()
                 .id(plato.getId())
@@ -68,6 +78,7 @@ public class PlatoResponseDTO {
                 .valoraciones(valoraciones)
                 .valoracionMedia(plato.getValoracionMedia())
                 .restaurante(RestauranteResponseDTO.of(plato.getRestaurante()))
+                .categoria(categoria)
                 .build();
     }
 

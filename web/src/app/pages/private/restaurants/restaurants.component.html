@@ -36,7 +36,7 @@
                       <div class="d-flex">
                         <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/restaurantform/' + restaurante.id">Editar datos</button>
                         <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/platos/' + restaurante.id">Gestionar platos</button>
-                        <button type="button" class="btn btn-outline-primary mx-1">Añadir nuevo plato</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" [routerLink]='"/platoform/" + restaurante!.id'>Añadir nuevo plato</button>
                         <button type="button" class="btn btn-outline-primary mx-1" [routerLink]="'/categorias/' + restaurante.id">Gestionar categorias</button>
                         <button type="button" class="btn btn-outline-primary mx-1" (click)="eliminar(restaurante.id)">Eliminar restaurante</button>
                       </div>
