@@ -18,39 +18,40 @@ import java.util.UUID;
 @Value
 public class PlatoResponseDTO {
 
-    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private UUID id;
 
-    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private String nombre;
 
     @JsonView({View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
     private String descripcion;
 
-    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private double precio;
 
+    @JsonView({View.VentaView.VentaDetailView.class})
     private RestauranteResponseDTO restaurante;
 
-    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private String imgUrl;
 
     @JsonView({View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
     private List<String> ingredientes;
 
-    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private boolean sinGluten;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonView({View.PlatoView.PlatoDetailView.class})
     private List<RateResponseDTO> valoraciones;
 
-    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private double valoracionMedia;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.PlatoView.PlatoGenericView.class, View.PlatoView.PlatoDetailView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private CategoriaResponseDTO categoria;
 
     public static PlatoResponseDTO of(Plato plato){

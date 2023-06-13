@@ -24,11 +24,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Builder
 @Getter
 @Setter
 public class VentaResponseDTO {
+
+    @JsonView({View.VentaView.VentaDetailView.class, View.VentaView.VentaOverView.class})
+    private UUID id;
 
     @JsonView({View.VentaView.VentaDetailView.class})
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -60,6 +64,7 @@ public class VentaResponseDTO {
             lineas = new ArrayList<>();
         }
         return VentaResponseDTO.builder()
+                .id(venta.getId())
                 .lineas(lineas)
                 .gastoEnvio(venta.getGastoEnvio())
                 .totalPedido(venta.getTotalPedido())

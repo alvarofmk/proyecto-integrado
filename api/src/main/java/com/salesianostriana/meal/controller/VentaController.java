@@ -16,6 +16,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/venta")
@@ -30,6 +31,13 @@ public class VentaController {
                                                                    @PageableDefault(page = 0, size = 10) Pageable pageable) {
         PageDTO<VentaResponseDTO> result = new PageDTO<>();
         return result.of(service.findSales(loggedUser, pageable).map(VentaResponseDTO::of));
+    }
+
+    @GetMapping("/{id}")
+    @JsonView(View.VentaView.VentaDetailView.class)
+    public VentaResponseDTO getDetails (@AuthenticationPrincipal User loggedUser,
+                                                   @PathVariable UUID id) {
+        return VentaResponseDTO.of(service.findDetails(id));
     }
 /*
     @GetMapping("/recaudacion")

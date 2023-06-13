@@ -1,0 +1,41 @@
+.venta-details{
+    height: 0px;
+    transition: all 0.5s;
+    width: 50%;
+    width: 70vh;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+}
+.expanded{
+    height: 300px;
+    overflow-y: auto;
+}
+.no-border{
+    border-bottom: white solid;
+    border-width: 0px;
+}
+tr{
+    padding-top: 10px;
+    min-height: 50px;
+}
+td{
+    max-width: 50px;
+    word-wrap: break-word;
+}
+table{
+    width: 100% !important;
+}
+.mock-table{
+    width: 20%;
+    text-align: center;
+}
+.div-img{
+    width: 60px;
+}
+.details-header{
+    border-bottom: 1px solid rgb(187, 187, 187);
+}
+.precios{
+    border-bottom: 1px solid black;
+    margin-top: auto;
+}

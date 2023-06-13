@@ -21,10 +21,10 @@ import java.util.UUID;
 @Value
 public class RestauranteResponseDTO {
 
-    @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private UUID id;
 
-    @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class})
+    @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class, View.VentaView.VentaDetailView.class})
     private String nombre;
 
     @JsonView({View.RestauranteView.RestauranteGenericView.class, View.RestauranteView.RestauranteDetailView.class})

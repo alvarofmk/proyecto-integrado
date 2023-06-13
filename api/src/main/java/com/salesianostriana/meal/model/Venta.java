@@ -17,6 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
+@NamedEntityGraph(name = "venta-con-lineas", attributeNodes = @NamedAttributeNode(value = "lineas"))
 public class Venta {
 
     @Id
