@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,6 +21,16 @@ public interface VentaRepository extends JpaRepository<Venta, UUID> {
 
     @EntityGraph("venta-con-lineas")
     Optional<Venta> findById(UUID id);
+
+    @Query("""
+        SELECT new com.salesianostriana.meal.model.dto.venta.EstadisticasDTO(SUM(v.totalPedido), COUNT(DISTINCT(v.id))) 
+        FROM Venta v 
+        JOIN LineaVenta lv ON lv.venta = v 
+        WHERE v.fecha > :from 
+        AND v.fecha < :to
+        AND lv.plato.restaurante.restaurantAdmin = :loggedUser
+        """)
+    EstadisticasDTO findEstadisticas(LocalDateTime from, LocalDateTime to, User loggedUser);
 /*
     @Query("""
         SELECT new com.salesianostriana.meal.model.dto.venta.EstadisticasDTO(SUM(v.totalPedido), COUNT(DISTINCT(v.id))) 

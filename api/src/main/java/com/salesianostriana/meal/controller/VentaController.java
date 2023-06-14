@@ -1,7 +1,9 @@
 package com.salesianostriana.meal.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.salesianostriana.meal.model.dto.DatesDTO;
 import com.salesianostriana.meal.model.dto.PageDTO;
+import com.salesianostriana.meal.model.dto.restaurante.RestauranteRequestDTO;
 import com.salesianostriana.meal.model.dto.restaurante.RestauranteResponseDTO;
 import com.salesianostriana.meal.model.dto.venta.EstadisticasDTO;
 import com.salesianostriana.meal.model.dto.venta.VentaResponseDTO;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -39,9 +42,11 @@ public class VentaController {
                                                    @PathVariable UUID id) {
         return VentaResponseDTO.of(service.findDetails(id));
     }
-/*
-    @GetMapping("/recaudacion")
-    public EstadisticasDTO getRecaudacion (@AuthenticationPrincipal User loggedUser, @RequestParam LocalDate from, @RequestParam LocalDate to) {
-        return service.getEstadisticas(from, to, loggedUser);
-    }*/
+
+    @PostMapping("/estadisticas")
+    public EstadisticasDTO getEstadisticas (@AuthenticationPrincipal User loggedUser, @RequestBody DatesDTO dates) {
+        String[] to = dates.getTo().split("-");
+        String[] from = dates.getFrom().split("-");
+        return service.getEstadisticas(LocalDate.of(Integer.parseInt(from[0]),Integer.parseInt(from[1]),Integer.parseInt(from[2])), LocalDate.of(Integer.parseInt(to[0]),Integer.parseInt(to[1]),Integer.parseInt(to[2])), loggedUser);
+    }
 }

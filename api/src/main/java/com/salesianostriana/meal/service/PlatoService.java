@@ -17,6 +17,7 @@ import com.salesianostriana.meal.security.user.service.UserService;
 import com.salesianostriana.meal.service.storage.StorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -160,5 +163,11 @@ public class PlatoService {
             p.setImgUrl(null);
             return repository.save(p);
         }).orElseThrow(() -> new EntityNotFoundException());
+    }
+
+    public Plato findPlatoEstrella(LocalDateTime from, LocalDateTime to, User loggedUser) {
+        List<Plato> listEstrella = repository.findPlatoEstrella(from, to, loggedUser);
+        if (listEstrella.isEmpty()) throw new EntityNotFoundException();
+        return listEstrella.get(0);
     }
 }

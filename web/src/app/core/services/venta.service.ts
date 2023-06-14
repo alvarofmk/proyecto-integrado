@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { VentaResponse } from '../model/ventaResponse';
 import { PageDTO } from '../model/pageDTO';
+import { Stats } from '../model/statsDTO';
+import { DatesRequest } from '../model/datesRequest';
 
 
 
@@ -21,5 +23,10 @@ export class VentaService {
   public findDetails(id: string):  Observable<VentaResponse> {
     return this.http.get<VentaResponse>(`${environment.URL_BASE_API}/venta/${id}`);
   }
+
+  public findStats(dates: DatesRequest):  Observable<Stats> {
+    return this.http.post<Stats>(`${environment.URL_BASE_API}/venta/estadisticas`, dates);
+  }
+
 
 }

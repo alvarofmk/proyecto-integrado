@@ -1,5 +1,6 @@
 package com.salesianostriana.meal.model.dto.plato;
 
+import com.salesianostriana.meal.model.Categoria;
 import com.salesianostriana.meal.model.Plato;
 import com.salesianostriana.meal.model.dto.categoria.CategoriaRequestDTO;
 import lombok.Builder;
@@ -36,13 +37,14 @@ public class PlatoRequestDTO {
 
 
     public Plato toPlato(){
+        Categoria categoriaSelected = categoria == null ? null : categoria.toCategoria();
         return Plato.builder()
                 .nombre(nombre)
                 .descripcion(descripcion)
                 .precio(precio)
                 .ingredientes(ingredientes)
                 .sinGluten(sinGluten)
-                .categoria(categoria.toCategoria())
+                .categoria(categoriaSelected)
                 .build();
     }
 

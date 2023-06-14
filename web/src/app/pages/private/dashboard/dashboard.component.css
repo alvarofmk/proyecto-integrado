@@ -3,3 +3,19 @@
     font-weight: 800;
     font-size: 1.5em;
 }
+.stat-card{
+    height: 110px;
+}
+.select-stats{
+    margin-top: 5px;
+    width: 10%;
+    margin-left: auto;
+}
+.select-stats select{
+    background-color: rgba(75, 75, 136, 0);
+    border: none;
+}
+
+.select-stats select:focus{
+    outline: none;
+}

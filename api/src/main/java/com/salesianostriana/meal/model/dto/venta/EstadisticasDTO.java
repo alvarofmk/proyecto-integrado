@@ -11,17 +11,22 @@ import java.time.LocalDate;
 @Setter
 public class EstadisticasDTO {
 
-    public EstadisticasDTO(double recaudado, int numPedidos, String nombrePlatoMasPedido, String imgPlatoMasPedido) {
+    public EstadisticasDTO(Double recaudado, Long numPedidos, String nombrePlatoMasPedido, String imgPlatoMasPedido) {
         this.recaudado = recaudado;
         this.numPedidos = numPedidos;
         this.nombrePlatoMasPedido = nombrePlatoMasPedido;
         this.imgPlatoMasPedido = imgPlatoMasPedido;
     }
 
+    public EstadisticasDTO(Double recaudado, Long numPedidos) {
+        this.recaudado = recaudado;
+        this.numPedidos = numPedidos;
+    }
+
     public EstadisticasDTO() {
     }
 
-    public EstadisticasDTO(double recaudado, int numPedidos, String nombrePlatoMasPedido, String imgPlatoMasPedido, LocalDate from, LocalDate to) {
+    public EstadisticasDTO(Double recaudado, Long numPedidos, String nombrePlatoMasPedido, String imgPlatoMasPedido, LocalDate from, LocalDate to) {
         this.recaudado = recaudado;
         this.numPedidos = numPedidos;
         this.nombrePlatoMasPedido = nombrePlatoMasPedido;
@@ -30,9 +35,9 @@ public class EstadisticasDTO {
         this.to = to;
     }
 
-    private double recaudado;
+    private Double recaudado;
 
-    private int numPedidos;
+    private Long numPedidos;
 
     private String nombrePlatoMasPedido;
 
