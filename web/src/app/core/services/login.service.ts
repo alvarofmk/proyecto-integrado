@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LoginRequest } from '../model/loginRequest';
 import { LoginResponse } from '../model/loginResponse';
 import { Router } from '@angular/router';
+import { RegisterRequest } from '../model/registerRequest';
 
 
 
@@ -17,6 +18,10 @@ export class LoginService {
 
   public logIn(loginRequest: LoginRequest): Observable<LoginResponse>{
     return this.http.post<LoginResponse>(`${environment.URL_BASE_API}/auth/login`, loginRequest);
+  }
+
+  public register(request: RegisterRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${environment.URL_BASE_API}/auth/register/owner`, request);
   }
 
   public logout() {

@@ -42,7 +42,7 @@
           <div class="col-12">
             <div class="card mb-4">
               <div class="card-header pb-0 d-flex">
-                <div class="dropdown">
+                <div class="dropdown" *ngIf="restaurantes.length > 0">
                   <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     {{restauranteSelected!.nombre}}
                   </button>
@@ -50,9 +50,13 @@
                     <li *ngFor="let restaurant of restaurantes"><a class="dropdown-item" (click)="selectRestaurante(restaurant)">{{restaurant.nombre}}</a></li>
                   </ul>
                 </div>
-                <button type="button" class="btn btn-primary" [routerLink]='"/platoform/" + restauranteSelected!.id'>Añadir nuevo plato</button>
+                <button type="button" class="btn btn-primary" [routerLink]='"/platoform/" + restauranteSelected!.id' *ngIf="restaurantes.length > 0">Añadir nuevo plato</button>
               </div>
-              <div class="card-body px-4 pt-0 pb-2">
+              <div class="card-body px-0 pt-0 pb-2" *ngIf="platos.length == 0">
+                <div class="my-4 mx-2 text-sm">Vaya, parece que aun no hay nada por aquí.</div>
+                <div class="my-4 mx-2 text-sm"  *ngIf="restaurantes.length == 0">Para poder crear platos, <a [routerLink]='"/restaurantform/"' href="javascript:;" class="text-primary text-gradient font-weight-bold">crea primero tu restaurante.</a></div>
+              </div>
+              <div class="card-body px-4 pt-0 pb-2" *ngIf="platos.length > 0">
                 <div class="table-responsive p-0">
                   <table class="table align-items-center mb-0">
                     <thead>

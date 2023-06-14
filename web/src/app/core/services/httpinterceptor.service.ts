@@ -12,7 +12,7 @@ export class HttpinterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(!req.url.endsWith('login')){
+    if(!req.url.endsWith('login') && !req.url.endsWith('register/owner')){
 
       const token: string | null = localStorage.getItem('token');
   
@@ -41,7 +41,7 @@ export class HttpinterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
 
-        if (err.status === 401) {
+        if (err.status === 401 || err.status === 403) {
           this.router.navigateByUrl('/login');
         }
 

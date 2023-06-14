@@ -17,6 +17,7 @@ import { MaterialModule } from './material/material.module';
 import { CategoriasComponent } from './pages/private/categorias/categorias.component';
 import { PlatoformComponent } from './pages/private/platoform/platoform.component';
 import { VentasComponent } from './pages/private/ventas/ventas.component';
+import { RegisterComponent } from './pages/public/register/register.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { VentasComponent } from './pages/private/ventas/ventas.component';
     RestaurantformComponent,
     CategoriasComponent,
     PlatoformComponent,
-    VentasComponent
+    VentasComponent,
+    RegisterComponent
   ], 
   imports: [
     AppRoutingModule,

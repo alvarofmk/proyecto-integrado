@@ -5,5 +5,6 @@ export interface LoginResponse {
     roles: string[]
     createdAt: string
     token: string
+    email: string
   }
   

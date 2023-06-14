@@ -7,7 +7,7 @@
             <div class="card card-plain">
             <div class="card-header pb-0 text-start">
                 <h4 class="font-weight-bolder">Log in</h4>
-                <p class="mb-0">Enter your email and password to sign in</p>
+                <p class="mb-0">Entra con tu usuario y tu contraseña</p>
             </div>
             <div class="card-body">
                 <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -17,29 +17,25 @@
                 <div class="mb-3">
                     <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" formControlName="pass">
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                    <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Entrar</button>
                 </div>
                 </form>
             </div>
             <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 <p class="mb-4 text-sm mx-auto">
                 ¿No tienes cuenta?
-                <a href="javascript:;" class="text-primary text-gradient font-weight-bold">Regístrate aqui.</a>
+                <a href="javascript:;" class="text-primary text-gradient font-weight-bold" routerLink='/register'>Regístrate aqui.</a>
                 </p>
             </div>
             </div>
         </div>
         <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
-            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
+            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2581&q=80');
         background-size: cover;">
             <span class="mask bg-gradient-primary opacity-6"></span>
-            <h4 class="mt-5 text-white font-weight-bolder position-relative">"Attention is the new currency"</h4>
-            <p class="text-white position-relative">The more effortless the writing looks, the more effort the writer actually put into the process.</p>
+            <h4 class="mt-5 text-white font-weight-bolder position-relative">Tu portal de comida online</h4>
+            <p class="text-white position-relative">Te ayudamos a llegar alli donde no llegan tus repartidores.</p>
             </div>
         </div>
         </div>
@@ -47,3 +43,6 @@
     </div>
 </section>
 </main>
+<div *ngIf="showWrongAcc" class="alert alert-danger" role="alert">
+    <strong>No puedes entrar con una cuenta de usuario.</strong> Prueba a crear tu propia cuenta para gestionar tu restaurante.
+  </div>

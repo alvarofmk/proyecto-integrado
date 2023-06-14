@@ -8,10 +8,12 @@ import { RestaurantformComponent } from './pages/private/restaurantform/restaura
 import { CategoriasComponent } from './pages/private/categorias/categorias.component';
 import { PlatoformComponent } from './pages/private/platoform/platoform.component';
 import { VentasComponent } from './pages/private/ventas/ventas.component';
+import { RegisterComponent } from './pages/public/register/register.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'restaurantes', component: RestaurantsComponent},
   { path: 'platos', component: PlatosComponent},

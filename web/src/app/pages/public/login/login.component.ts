@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     usuario: new FormControl(),
     pass: new FormControl()
   })
+  showWrongAcc: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -28,9 +29,13 @@ export class LoginComponent implements OnInit {
     }
     debugger;
     this.loginService.logIn(request).subscribe(response => {
-      debugger;
-      localStorage.setItem("token", response.token);
-      this.router.navigate(['dashboard']);
+      if(!response.roles.includes("OWNER") && !response.roles.includes("ADMIN")){
+        this.showWrongAcc = true;
+      }else{
+        localStorage.setItem("token", response.token);
+        this.router.navigate(['dashboard']);
+      }
+      
     });
   }
 
