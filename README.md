@@ -4,36 +4,8 @@ API Rest programada en Java con el framework [Spring boot](https://spring.io/pro
 
 Esta aplicación cuenta con seguridad implementada en spring, es necesario un token de acceso que se puede obtener con el login para la mayoría de las peticiones. Los usuarios cuentan con roles que delimitan las acciones que pueden hacer en la API. El rol de usuario estándar puede acceder a los recursos. El rol de propietario (owner) puede crear, y gestionar los restaurantes que le pertenezcan, asi como los platos que tengan dichos restaurantes.
 
-## FrontEnd
+Este proyecto cuenta con dos aplicaciones de frontend. Angular, utilizando material, bootstrap y como front end para administracion. y Flutter como front end movil para la aplicacion destinada a usuarios finales
 
-Este repositorio es parte de un proyecto conjunto, cuenta con un front end movil hecho en flutter, disponible en el siguiente repositorio:
-
-- [Repositorio Front End](https://github.com/alvarofmk/meal-front)
-
-## Instrucciones DEV
-
-Tan solo es necesario clonar el repositorio y asegurarse de que la siguiente propiedad esta marcada con el perfil dev:
-
-```
-spring.profiles.active=dev
-```
-
-## Instrucciones PROD
-
-Es necesario tener instalado docker.
-Tras clonar el repositorio, asegurarse de que la siguiente propiedad esta marcada con el perfil prod:
-
-```
-spring.profiles.active=prod
-```
-
-Navegar hacia la carpeta raiz del proyecto en vuestra terminal y ejecutad el siguiente comando.
-
-```
-docker compose up
-```
-
-Tras ello es seguro lanzar la aplicación.
 
 ## URL base
 
