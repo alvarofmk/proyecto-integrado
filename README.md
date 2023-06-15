@@ -6,6 +6,10 @@ Esta aplicación cuenta con seguridad implementada en spring, es necesario un to
 
 Este proyecto cuenta con dos aplicaciones de frontend. Angular, utilizando material, bootstrap y como front end para administracion. y Flutter como front end movil para la aplicacion destinada a usuarios finales
 
+## Prototipo maquetado en figma
+
+- [Prototipo movil]https://www.figma.com/proto/YKAyFLNJd00dQDEsZNIV26/Meal?type=design&scaling=scale-down&page-id=0%3A1
+- [Prototipo web]https://www.figma.com/proto/Tvn6uv6BB6BQ7PwWiuTkLT/Meal-web?type=design&node-id=1-2&scaling=min-zoom&page-id=0%3A1
 
 ## URL base
 
